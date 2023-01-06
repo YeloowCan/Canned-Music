@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
-export const baseUrl = 'https://canned.yellowcan.top/'
+export const baseUrl = 'https://cannedapi.yellowcan.top/'
 
 axios.defaults.baseURL = baseUrl
 axios.defaults.headers.post['Content-Type'] = 'application/json'

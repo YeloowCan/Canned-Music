@@ -13,7 +13,7 @@ const Login: FC = () => {
     // })
   }, [])
 
-  return <div className={style.app}>Login</div>
+  return <div className={style.app}>Loginddd</div>
 }
 
 export default Login
