@@ -1,7 +1,12 @@
-import React, { FC } from 'react';
+import { FC, useEffect } from 'react'
+import { accountInfo } from '@/apis/account'
 
 const Song: FC = () => {
-  return <div>Song</div>;
-};
+  useEffect(() => {
+    accountInfo()
+  }, [])
 
-export default Song;
+  return <div>Song</div>
+}
+
+export default Song

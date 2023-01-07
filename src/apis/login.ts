@@ -1,9 +1,9 @@
 import request from '../utils/request'
 import { ILoginRequest } from './types/login'
 
-const login = ({ phone, password }: ILoginRequest) => {
+const login = ({ phone, password, captcha }: ILoginRequest) => {
   return request({
-    url: `/login/cellphone?phone=${phone}&captcha=${password}`
+    url: `/login/cellphone?phone=${phone}&${password ? `password=${password}` : `captcha=${captcha}`}`
   })
 }
 

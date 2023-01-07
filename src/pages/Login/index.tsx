@@ -1,10 +1,11 @@
 import { FC, useEffect, useState } from 'react'
-import { getAuthCode, login } from '../../apis/login'
+import { getAuthCode, login } from '@/apis/login'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import { Button, Card, Form, Input } from 'antd'
+import { Button, Card, Form, Input, Tabs } from 'antd'
 import styles from './index.module.scss'
-import { ILoginRequest } from '../../apis/types/login'
+import { ILoginRequest } from '@/apis/types/login'
 import { useNavigate } from 'react-router-dom'
+import { SESSION_LOCAL_KEY } from '@/constants/keys'
 
 const Login: FC = () => {
   const navigate = useNavigate()
@@ -31,50 +32,89 @@ const Login: FC = () => {
   }
 
   const handleSubmint = (value: ILoginRequest) => {
-    const { phone, password } = value
-    login({ phone, password }).then((res) => {
-      res && navigate('/song')
+    const { phone, password, captcha } = value
+    login({ phone, password, captcha }).then((res) => {
+      if (res) {
+        localStorage.setItem(SESSION_LOCAL_KEY, JSON.stringify(res))
+        navigatePage()
+      }
     })
+  }
+
+  const navigatePage = () => {
+    navigate('/song')
   }
 
   return (
     <div className={styles.container}>
       <Card>
         <Form form={form} onFinish={handleSubmint}>
-          <Form.Item name='phone' rules={[{ required: true }]}>
-            <Input size='large' placeholder='手机号' prefix={<UserOutlined />} />
-          </Form.Item>
-          <Form.Item rules={[{ required: true }]}>
-            {/* <Row gutter={12}> */}
-            <Input.Group compact>
-              <Form.Item name='password'>
-                <Input
-                  size='large'
-                  name='password'
-                  style={{ width: 250 }}
-                  placeholder='短信验证码'
-                  prefix={<LockOutlined />}
-                />
-              </Form.Item>
-              <Button size='large' disabled={isSentCode > 0} type='primary' onClick={getPhoneAuthCode}>
-                {isSentCode ? `${isSentCode}秒后重新获取` : '获取验证码'}
-              </Button>
-            </Input.Group>
-            {/* <Col span={15}>
-                <Input placeholder='短信验证码' />
-              </Col>
-              <Col span={9}>
-                <Button disabled={isSentCode > 0} type='primary' onClick={getPhoneAuthCode}>
-                  {isSentCode ? `${isSentCode}秒后重新获取` : '获取验证码'}
-                </Button>
-              </Col> */}
-            {/* </Row> */}
-          </Form.Item>
-          <Form.Item>
-            <Button size='large' type='primary' htmlType='submit' className={styles.submitBtn}>
-              登录
-            </Button>
-          </Form.Item>
+          <Tabs
+            defaultActiveKey='1'
+            items={[
+              {
+                label: '验证码登录',
+                key: '1',
+                children: (
+                  <>
+                    <Form.Item name='phone' rules={[{ required: true }]}>
+                      <Input size='large' placeholder='手机号' prefix={<UserOutlined />} />
+                    </Form.Item>
+                    <Form.Item rules={[{ required: true }]}>
+                      {/* <Row gutter={12}> */}
+                      <Input.Group compact>
+                        <Form.Item name='captcha'>
+                          <Input
+                            size='large'
+                            name='captcha'
+                            style={{ width: 250 }}
+                            placeholder='短信验证码'
+                            prefix={<LockOutlined />}
+                          />
+                        </Form.Item>
+                        <Button size='large' disabled={isSentCode > 0} type='primary' onClick={getPhoneAuthCode}>
+                          {isSentCode ? `${isSentCode}秒后重新获取` : '获取验证码'}
+                        </Button>
+                      </Input.Group>
+                    </Form.Item>
+                    <Form.Item>
+                      <Button size='large' type='primary' htmlType='submit' className={styles.submitBtn}>
+                        登录
+                      </Button>
+                    </Form.Item>
+                  </>
+                )
+              },
+              {
+                label: '密码登录',
+                key: '2',
+                children: (
+                  <>
+                    <Form.Item name='phone' rules={[{ required: true }]}>
+                      <Input size='large' placeholder='手机号' prefix={<UserOutlined />} />
+                    </Form.Item>
+                    <Form.Item rules={[{ required: true }]}>
+                      {/* <Row gutter={12}> */}
+                      <Form.Item name='password'>
+                        <Input.Password
+                          size='large'
+                          name='password'
+                          style={{ width: 360 }}
+                          placeholder='密码'
+                          prefix={<LockOutlined />}
+                        />
+                      </Form.Item>
+                    </Form.Item>
+                    <Form.Item>
+                      <Button size='large' type='primary' htmlType='submit' className={styles.submitBtn}>
+                        登录
+                      </Button>
+                    </Form.Item>
+                  </>
+                )
+              }
+            ]}
+          ></Tabs>
         </Form>
       </Card>
     </div>

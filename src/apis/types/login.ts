@@ -1,4 +1,5 @@
 export interface ILoginRequest {
   phone: string
-  password: string
+  password?: string
+  captcha?: string
 }

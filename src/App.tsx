@@ -1,5 +1,6 @@
-import { FC, lazy, Suspense } from 'react'
+import { FC, lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { SESSION_LOCAL_KEY } from './constants/keys'
 import 'antd/dist/reset.css'
 import './styles/global.scss'
 
