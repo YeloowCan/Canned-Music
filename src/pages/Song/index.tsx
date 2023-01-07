@@ -1,9 +1,9 @@
 import { FC, useEffect } from 'react'
-import { accountInfo } from '@/apis/account'
+// import { accountInfo } from '@/apis/account'
 
 const Song: FC = () => {
   useEffect(() => {
-    accountInfo()
+    // accountInfo()
   }, [])
 
   return <div>Song</div>
