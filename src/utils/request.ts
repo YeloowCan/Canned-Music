@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
 export const baseUrl = 'https://cannedapi.yellowcan.top/'
@@ -6,7 +7,7 @@ axios.defaults.baseURL = baseUrl
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 const handleError = (error: any) => {
-  console.log(error)
+  message.error(error.data.message)
 }
 
 // axios的实例及拦截器配置
@@ -38,6 +39,13 @@ const request = ({ url, data, method = 'get', ...rest }: AxiosRequestConfig) => 
       if (response.status === 200) {
         return response.data
       }
+    })
+    .then(function (response: any) {
+      if (response?.code !== 200) {
+        message.error(response.message)
+        return
+      }
+      return response
     })
     .catch(function (error: any) {
       // handle error

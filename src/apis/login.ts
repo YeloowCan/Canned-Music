@@ -1,13 +1,16 @@
 import request from '../utils/request'
+import { ILoginRequest } from './types/login'
 
-const login = (phone: string) => {
+const login = ({ phone, password }: ILoginRequest) => {
   return request({
-    url: `/comment/music?id=186016&limit=1`
-    // params: {
-    //   phone,
-    //   password
-    // }
+    url: `/login/cellphone?phone=${phone}&captcha=${password}`
   })
 }
 
-export { login }
+const getAuthCode = (phone: string) => {
+  return request({
+    url: `/captcha/sent?phone=${phone}`
+  })
+}
+
+export { login, getAuthCode }
