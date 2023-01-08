@@ -1,4 +1,4 @@
-import { FC, lazy, Suspense } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import 'antd/dist/reset.css'
 import './styles/global.scss'
@@ -6,7 +6,7 @@ import './styles/global.scss'
 const Login = lazy(() => import('./pages/Login'))
 const Song = lazy(() => import('./pages/Song'))
 
-const App: FC = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={null}>
