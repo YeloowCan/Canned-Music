@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react'
-import { useAppSelector } from '@/hooks'
+import { useAppSelector } from '../../hooks'
 // import { accountInfo } from '@/apis/account'
 
 const Song: FC = () => {
