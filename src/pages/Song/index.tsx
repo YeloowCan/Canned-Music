@@ -11,7 +11,7 @@ const Song: FC = () => {
     // accountInfo()
   }, [])
 
-  return <div>Songddd</div>
+  return <div>Songdddd</div>
 }
 
 export default Song
