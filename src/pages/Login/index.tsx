@@ -2,10 +2,10 @@ import { FC, useEffect, useState } from 'react'
 import { getAuthCode, login } from '../../apis/login'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { Button, Card, Form, Input, Tabs } from 'antd'
-import styles from './index.module.scss'
 import { ILoginRequest } from '../../apis/types/login'
 import { useNavigate } from 'react-router-dom'
 import { SESSION_LOCAL_KEY } from '../../constants/keys'
+import styles from './index.module.scss'
 
 const Login: FC = () => {
   const navigate = useNavigate()
