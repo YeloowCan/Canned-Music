@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { getAuthCode, login } from '../../apis/login'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import { Button, Card, Form, Input, Tabs } from 'antd'
+import { Button, Card, Form, Input, message, Tabs } from 'antd'
 import { ILoginRequest } from '../../apis/types/login'
 import { useNavigate } from 'react-router-dom'
 import { SESSION_LOCAL_KEY } from '../../constants/keys'
 import styles from './index.module.scss'
+import { loginIn } from '../../redux/slices/loginSlice'
+import { useDispatch } from 'react-redux'
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [form] = Form.useForm()
   const [isSentCode, setIsSentCode] = useState<number>(0)
@@ -35,7 +38,9 @@ const Login: React.FC = () => {
     const { phone, password, captcha } = value
     login({ phone, password, captcha }).then((res) => {
       if (res) {
+        message.success('登录成功')
         localStorage.setItem(SESSION_LOCAL_KEY, JSON.stringify(res))
+        dispatch(loginIn(res))
         navigatePage()
       }
     })

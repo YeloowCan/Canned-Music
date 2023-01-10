@@ -1,20 +1,15 @@
-import React, { lazy, Suspense } from 'react'
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import React, { Suspense } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import routers from './router'
+import { RouterAuth } from './components'
 import 'antd/dist/reset.css'
 import './styles/global.scss'
-
-const Login = lazy(() => import('./pages/Login'))
-const Song = lazy(() => import('./pages/Song'))
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={null}>
-        <Routes>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/song' element={<Song />}></Route>
-          <Route path='*' element={<Navigate to='login' />}></Route>
-        </Routes>
+        <RouterAuth routers={routers} />
       </Suspense>
     </BrowserRouter>
   )

@@ -17,7 +17,19 @@ const initialLoginState: LoginState = {
 export const loginSlice = createSlice({
   name: 'login',
   initialState: initialLoginState,
-  reducers: {}
+  reducers: {
+    loginIn: (state, { payload }) => ({
+      ...state,
+      isLogined: true,
+      userInfo: payload
+    }),
+    loginOut: (state) => ({
+      ...state,
+      isLogined: false
+    })
+  }
 })
+
+export const { loginIn, loginOut } = loginSlice.actions
 
 export default loginSlice.reducer
