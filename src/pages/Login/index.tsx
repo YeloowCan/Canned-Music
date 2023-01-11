@@ -5,7 +5,7 @@ import { Button, Card, Form, Input, message, Tabs } from 'antd'
 import { ILoginRequest } from '../../apis/types/login'
 import { useNavigate } from 'react-router-dom'
 import { SESSION_LOCAL_KEY } from '../../constants/keys'
-import styles from './index.module.scss'
+import styles from './style.module.scss'
 import { loginIn } from '../../redux/slices/loginSlice'
 import { useDispatch } from 'react-redux'
 
