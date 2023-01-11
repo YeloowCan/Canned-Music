@@ -13,7 +13,7 @@ const MainLayout: React.FC<IMainLayoutProps> = ({ children }) => {
 
   const { pathname } = location
 
-  return pathname === '/login' ? (
+  return ['/', '/login'].includes(pathname) ? (
     children
   ) : (
     <Layout className={styles.layout}>
