@@ -5,8 +5,6 @@ import { useAppSelector } from '../../hooks'
 const Song: React.FC = () => {
   const { isLogined, userInfo } = useAppSelector((store) => store.login)
 
-  console.log(isLogined, userInfo)
-
   useEffect(() => {
     // accountInfo()
   }, [])

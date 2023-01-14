@@ -2,7 +2,12 @@ import React from 'react'
 import { Layout } from 'antd'
 import { useLocation } from 'react-router-dom'
 import TopMenu from './TopMenu'
+import LeftMenu from './LeftMenu'
 import styles from './style.module.scss'
+
+const { Content } = Layout
+
+const IgnorePath = ['/', '/login']
 
 interface IMainLayoutProps {
   children: React.ReactElement
@@ -13,12 +18,15 @@ const MainLayout: React.FC<IMainLayoutProps> = ({ children }) => {
 
   const { pathname } = location
 
-  return ['/', '/login'].includes(pathname) ? (
+  return IgnorePath.includes(pathname) ? (
     children
   ) : (
     <Layout className={styles.layout}>
       <TopMenu />
-      {children}
+      <Layout>
+        <LeftMenu />
+        <Content>{children}</Content>
+      </Layout>
     </Layout>
   )
 }

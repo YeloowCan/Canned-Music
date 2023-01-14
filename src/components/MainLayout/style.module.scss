@@ -1,13 +1,32 @@
 .layout {
+  height: 100%;
   :global .ant-layout-header {
-    background-color: rgba(248, 248, 248, 0.95);
+    background-color: rgba(247, 252, 246, 0.95);
     box-shadow: 0 1px 10px 1px rgb(0 0 0 / 12%);
     height: 48px;
     line-height: 48px;
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  :global .ant-layout-sider {
+    background: #eaeaea;
+    padding: 12px;
+  }
+
+  .logo {
+    height: 60px;
+    margin-top: -12px;
+  }
+
+  .logoName {
+    font-size: 20px;
+    margin-left: 8px;
+    letter-spacing: 2px;
+    color: rgb(200, 100, 50);
+  }
+
+  .nickName {
+    margin-left: 12px;
   }
 }
-
-// .background {
-//   background-color: rgba(248, 248, 248, 0.95) !important;
-//   box-shadow: 0 1px 10px 1px rgb(0 0 0 / 12%);
-// }

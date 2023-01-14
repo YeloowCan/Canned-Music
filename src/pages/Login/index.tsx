@@ -38,9 +38,13 @@ const Login: React.FC = () => {
     const { phone, password, captcha } = value
     login({ phone, password, captcha }).then((res) => {
       if (res) {
+        const userInfo = {
+          userId: res.profile.userId,
+          ...res
+        }
         message.success('登录成功')
-        localStorage.setItem(SESSION_LOCAL_KEY, JSON.stringify(res))
-        dispatch(loginIn(res))
+        localStorage.setItem(SESSION_LOCAL_KEY, JSON.stringify(userInfo))
+        dispatch(loginIn(userInfo))
         navigatePage()
       }
     })

@@ -1,8 +1,8 @@
 import { message } from 'antd'
 import React, { useEffect } from 'react'
 import { Location, useLocation, useNavigate, useRoutes } from 'react-router-dom'
-import { useAppSelector } from '../hooks'
-import { IRouters } from '../router/type'
+import { useAppSelector } from '../../hooks'
+import { IRouters } from '../../router/type'
 
 interface IRouterAuthProps {
   routers: IRouters[]
