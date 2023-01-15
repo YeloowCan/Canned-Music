@@ -1,5 +1,6 @@
 .layout {
   height: 100%;
+  overflow: hidden;
   :global .ant-layout-header {
     background-color: rgba(247, 252, 246, 0.95);
     box-shadow: 0 1px 10px 1px rgb(0 0 0 / 12%);
@@ -12,6 +13,14 @@
   :global .ant-layout-sider {
     background: #eaeaea;
     padding: 12px;
+  }
+
+  .sider {
+    overflow: auto;
+  }
+
+  .content {
+    padding: 24px;
   }
 
   .logo {

@@ -5,7 +5,7 @@ import TopMenu from './TopMenu'
 import LeftMenu from './LeftMenu'
 import styles from './style.module.scss'
 
-const { Content } = Layout
+const { Content, Footer } = Layout
 
 const IgnorePath = ['/', '/login']
 
@@ -25,8 +25,9 @@ const MainLayout: React.FC<IMainLayoutProps> = ({ children }) => {
       <TopMenu />
       <Layout>
         <LeftMenu />
-        <Content>{children}</Content>
+        <Content className={styles.content}>{children}</Content>
       </Layout>
+      <Footer></Footer>
     </Layout>
   )
 }

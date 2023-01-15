@@ -1,12 +1,6 @@
 import request from '../utils/request'
 import { IPlaylist } from './types/account'
 
-const accountInfo = () => {
-  return request({
-    url: 'user/playlist?uid=77456545&limit=100'
-  })
-}
-
 /**
  * 获取用户歌单
  * @param uid 用户id
@@ -26,4 +20,4 @@ const userPlaylist = async (uid: number): Promise<{ create: IPlaylist[]; collect
   }
 }
 
-export { accountInfo, userPlaylist }
+export { userPlaylist }

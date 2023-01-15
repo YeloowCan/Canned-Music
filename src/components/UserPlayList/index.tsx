@@ -3,6 +3,7 @@ import { userPlaylist } from '../../apis/account'
 import { useRequest } from 'ahooks'
 import { UnorderedListOutlined } from '@ant-design/icons'
 import { IPlaylist } from '../../apis/types/account'
+import { Spin } from 'antd'
 import styles from './style.module.scss'
 
 interface IUserPlayListProp {
@@ -16,17 +17,15 @@ interface IDetailListProps {
 
 // 用户歌单
 const UserPlayList: React.FC<IUserPlayListProp> = ({ uid }) => {
-  const { data } = useRequest(() => userPlaylist(uid), {
+  const { data, loading } = useRequest(() => userPlaylist(uid), {
     refreshDeps: [uid]
   })
 
-  console.log(data)
-
   return (
-    <div className={styles.container}>
+    <Spin spinning={loading} className={styles.container}>
       <DetailList title='创建的歌单' data={data?.create} />
       <DetailList title='收藏的歌单' data={data?.collect} />
-    </div>
+    </Spin>
   )
 }
 

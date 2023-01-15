@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom'
 import { IRouters } from './type'
 
 const Login = lazy(() => import('../pages/Login'))
-const Song = lazy(() => import('../pages/Song'))
+const Recommend = lazy(() => import('../pages/Recommend'))
 
 const routers: IRouters[] = [
   {
@@ -15,8 +15,8 @@ const routers: IRouters[] = [
     element: <Login />
   },
   {
-    path: '/song',
-    element: <Song />,
+    path: '/recommend',
+    element: <Recommend />,
     auth: true
   }
 ]

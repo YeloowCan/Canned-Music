@@ -10,10 +10,9 @@ const LeftMenu: React.FC = () => {
   const { userInfo } = useAppSelector((store) => store.login)
   const { profile, userId } = userInfo
   const { avatarUrl, nickname } = profile
-  console.log(userInfo, profile, userId)
 
   return (
-    <Sider>
+    <Sider className={styles.sider}>
       <div>
         <Avatar src={avatarUrl} size='large' />
         <span className={styles.nickName}>{nickname}</span>
