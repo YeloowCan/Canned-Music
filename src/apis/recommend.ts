@@ -1,8 +1,8 @@
 import request from '../utils/request'
-import { IBanner } from './types/recommend'
+import { IBanner, IRecommendSongList } from './types/recommend'
 
 /**
- * 获取Banner
+ * @description 获取Banner
  * @param type 类型 
     0: pc
 
@@ -20,4 +20,15 @@ const getBanner = async (type = 0): Promise<IBanner[]> => {
   return response.banners
 }
 
-export { getBanner }
+/**
+ * @description 推荐歌单
+ */
+const getRecommendSongList = async (): Promise<IRecommendSongList[]> => {
+  const response = await request({
+    url: `/personalized`
+  })
+
+  return response.result
+}
+
+export { getBanner, getRecommendSongList }

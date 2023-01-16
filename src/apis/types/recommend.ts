@@ -7,3 +7,10 @@ export interface IBanner {
   typeTitle: string
   url: string
 }
+
+export interface IRecommendSongList {
+  name: string
+  picUrl: string
+  id: number
+  playCount: number
+}

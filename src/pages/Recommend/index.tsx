@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
-import { useAppSelector } from '../../hooks'
+import React from 'react'
 import Banner from './Banner'
+import SongList from './SongList'
+import styles from './style.module.scss'
 
 const Recommend: React.FC = () => {
-  const { isLogined, userInfo } = useAppSelector((store) => store.login)
-
   return (
-    <div>
+    <div className={styles.container}>
       <Banner />
+      <SongList />
     </div>
   )
 }
