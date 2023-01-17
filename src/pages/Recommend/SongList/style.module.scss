@@ -3,7 +3,7 @@
 }
 
 .title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -19,4 +19,12 @@
 
 .name {
   margin-top: 12px;
+}
+
+.playCount {
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  color: #fff;
+  font-size: 16px;
 }

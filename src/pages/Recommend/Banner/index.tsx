@@ -2,7 +2,7 @@ import React from 'react'
 import { useRequest } from 'ahooks'
 import { getBanner } from '../../../apis/recommend'
 import Slider, { Settings } from 'react-slick'
-import { Spin } from 'antd'
+import { Skeleton } from 'antd'
 import styles from './style.module.scss'
 
 const setting: Settings = {
@@ -22,13 +22,13 @@ const Banner: React.FC = () => {
   }
 
   return (
-    <Spin spinning={loading}>
+    <Skeleton loading={loading}>
       <Slider {...setting}>
         {data?.map(({ imageUrl }) => (
           <img className={styles.image} key={imageUrl} src={imageUrl} onClick={() => handleClick()} />
         ))}
       </Slider>
-    </Spin>
+    </Skeleton>
   )
 }
 

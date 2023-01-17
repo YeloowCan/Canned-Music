@@ -51,7 +51,7 @@ const Login: React.FC = () => {
   }
 
   const navigatePage = () => {
-    navigate('/song')
+    navigate('/recommend')
   }
 
   return (

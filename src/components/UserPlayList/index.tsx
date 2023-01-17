@@ -3,7 +3,7 @@ import { userPlaylist } from '../../apis/account'
 import { useRequest } from 'ahooks'
 import { UnorderedListOutlined } from '@ant-design/icons'
 import { IPlaylist } from '../../apis/types/account'
-import { Spin } from 'antd'
+import { Skeleton } from 'antd'
 import styles from './style.module.scss'
 
 interface IUserPlayListProp {
@@ -22,10 +22,10 @@ const UserPlayList: React.FC<IUserPlayListProp> = ({ uid }) => {
   })
 
   return (
-    <Spin spinning={loading} className={styles.container}>
+    <Skeleton loading={loading} className={styles.container}>
       <DetailList title='创建的歌单' data={data?.create} />
       <DetailList title='收藏的歌单' data={data?.collect} />
-    </Spin>
+    </Skeleton>
   )
 }
 
