@@ -40,14 +40,14 @@ const request = ({ url, data, method = 'get', ...rest }: AxiosRequestConfig) => 
         return response.data
       }
     })
-    .then(function (response: any) {
+    .then(function (response) {
       if (response?.code !== 200) {
         message.error(response.message)
         return
       }
       return response
     })
-    .catch(function (error: any) {
+    .catch(function (error) {
       // handle error
       handleError(error.response)
     })

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Avatar, Layout } from 'antd'
-import { useAppSelector } from '../../hooks'
+import { useAppSelector } from '../../../hooks'
+import UserPlayList from './UserPlayList'
 import styles from './style.module.scss'
-import UserPlayList from '../UserPlayList'
 
 const { Sider } = Layout
 

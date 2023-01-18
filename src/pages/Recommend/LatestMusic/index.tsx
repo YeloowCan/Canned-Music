@@ -49,7 +49,7 @@ const ItemMusic: React.FC<ItemMusicProps> = ({ data }) => {
   return (
     <Row gutter={12} align='middle'>
       <Col span={6}>
-        <img key={id} src={picUrl} className={styles.pic} loading='lazy' />
+        <img key={id} src={picUrl} className={styles.pic} loading='lazy' decoding='async' />
         <PlayCircleFilled className={styles.playIcon} />
       </Col>
       <Col span={18}>

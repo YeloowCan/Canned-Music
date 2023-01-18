@@ -3,9 +3,10 @@ import { Layout } from 'antd'
 import { useLocation } from 'react-router-dom'
 import TopMenu from './TopMenu'
 import LeftMenu from './LeftMenu'
+import FooterPlayer from './FooterPlayer'
 import styles from './style.module.scss'
 
-const { Content, Footer } = Layout
+const { Content } = Layout
 
 const IgnorePath = ['/', '/login']
 
@@ -27,7 +28,7 @@ const MainLayout: React.FC<IMainLayoutProps> = ({ children }) => {
         <LeftMenu />
         <Content className={styles.content}>{children}</Content>
       </Layout>
-      <Footer></Footer>
+      <FooterPlayer />
     </Layout>
   )
 }
