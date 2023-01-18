@@ -1,4 +1,5 @@
 import RouterAuth from './RouteAuth'
 import MainLayout from './MainLayout'
+import PlayIcon from './PlayIcon'
 
-export { RouterAuth, MainLayout }
+export { RouterAuth, MainLayout, PlayIcon }

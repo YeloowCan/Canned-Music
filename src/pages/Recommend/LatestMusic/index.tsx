@@ -1,10 +1,11 @@
 import React from 'react'
 import { Col, Row, Skeleton } from 'antd'
-import { PlayCircleFilled, RightOutlined } from '@ant-design/icons'
-import styles from './style.module.scss'
+import { RightOutlined } from '@ant-design/icons'
 import { useRequest } from 'ahooks'
 import { getRecommendNewSong } from '../../../apis/recommend'
 import { IRecommendNewSong } from '../../../apis/types/recommend'
+import { PlayIcon } from '../../../components'
+import styles from './style.module.scss'
 
 interface ItemMusicProps {
   data: IRecommendNewSong
@@ -50,7 +51,7 @@ const ItemMusic: React.FC<ItemMusicProps> = ({ data }) => {
     <Row gutter={12} align='middle'>
       <Col span={6}>
         <img key={id} src={picUrl} className={styles.pic} loading='lazy' decoding='async' />
-        <PlayCircleFilled className={styles.playIcon} />
+        <PlayIcon className={styles.playIcon} />
       </Col>
       <Col span={18}>
         <Row>
