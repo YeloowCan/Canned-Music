@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRequest } from 'ahooks'
-import { getBanner } from '../../../apis/recommend'
+import { getBanner } from '../../../apis/song'
 import Slider, { Settings } from 'react-slick'
 import { Skeleton } from 'antd'
 import styles from './style.module.scss'

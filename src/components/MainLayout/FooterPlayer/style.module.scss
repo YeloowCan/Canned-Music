@@ -8,6 +8,21 @@
   text-align: center;
 }
 
+.songPic {
+  height: 48px;
+  border-radius: 10px;
+}
+
+.songName {
+  padding-left: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .switchIcon {
   font-size: 28px;
   padding: 12px;

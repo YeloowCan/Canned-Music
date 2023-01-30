@@ -25,7 +25,7 @@ interface ISong {
   artists: IArtists[]
 }
 
-export interface IRecommendNewSong {
+export interface ISongDetail {
   name: string
   picUrl: string
   id: number

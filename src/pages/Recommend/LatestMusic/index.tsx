@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Col, Row, Skeleton } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
 import { useRequest } from 'ahooks'
-import { getRecommendNewSong } from '../../../apis/recommend'
-import { IRecommendNewSong } from '../../../apis/types/recommend'
+import { getRecommendNewSong } from '../../../apis/song'
+import { ISongDetail } from '../../../apis/types/song'
 import { PlayIcon } from '../../../components'
+import { useAppDispatch } from '../../../hooks'
 import styles from './style.module.scss'
+import { setPlayingSong } from '../../../redux/slices/playingAudioSlice'
 
 interface ItemMusicProps {
-  data: IRecommendNewSong
+  data: ISongDetail
 }
 
 const LatestMusic: React.FC = () => {
@@ -41,17 +43,23 @@ const LatestMusic: React.FC = () => {
 }
 
 const ItemMusic: React.FC<ItemMusicProps> = ({ data }) => {
+  const dispatch = useAppDispatch()
+
   const { id, picUrl, song } = data
   const { name, alias, artists } = song
 
   const songName = `${name}${alias.length > 0 ? `（${alias[0]}）` : ''}`
   const songArtists = artists.map((a) => a.name).join('/')
 
+  const handlePlay = useCallback(() => {
+    dispatch(setPlayingSong(data))
+  }, [])
+
   return (
     <Row gutter={12} align='middle'>
       <Col span={6}>
         <img key={id} src={picUrl} className={styles.pic} loading='lazy' decoding='async' />
-        <PlayIcon className={styles.playIcon} />
+        <PlayIcon className={styles.playIcon} onClick={handlePlay} />
       </Col>
       <Col span={18}>
         <Row>
@@ -70,4 +78,4 @@ const ItemMusic: React.FC<ItemMusicProps> = ({ data }) => {
   )
 }
 
-export default LatestMusic
+export default React.memo(LatestMusic)
