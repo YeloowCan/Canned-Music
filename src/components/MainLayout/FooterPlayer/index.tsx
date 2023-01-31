@@ -4,27 +4,35 @@ import styles from './style.module.scss'
 import { SoundOutlined, StepBackwardOutlined, StepForwardOutlined } from '@ant-design/icons'
 import PlayIcon from '../../PlayIcon'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { changePlayingState } from '../../../redux/slices/playingAudioSlice'
+import { changePlayingState, changeVolume } from '../../../redux/slices/playingAudioSlice'
 
 const { Footer } = Layout
 
 const FooterPlayer: React.FC = () => {
   const dispatch = useAppDispatch()
-  const { isPlaying, playingSong } = useAppSelector((store) => store.playingAudio)
+  const { isPlaying, playingSong, volume } = useAppSelector((store) => store.playingAudio)
   const { id, picUrl, name, song } = playingSong || {}
   const { artists } = song || {}
+
+  const musicAudio = document.getElementById('musicAudio') as HTMLAudioElement
 
   const handlePlay = () => {
     if (!playingSong) {
       return
     }
-    const musicAudio = document.getElementById('musicAudio') as HTMLAudioElement
     if (musicAudio.paused) {
       musicAudio.play()
     } else {
       musicAudio.pause()
     }
     dispatch(changePlayingState())
+  }
+
+  const handleChangeVolume = (value: number) => {
+    if (musicAudio?.played) {
+      musicAudio.volume = value / 100
+    }
+    dispatch(changeVolume(value))
   }
 
   const artistsList = useMemo(() => {
@@ -36,7 +44,7 @@ const FooterPlayer: React.FC = () => {
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: '#EC4141'
+            colorPrimary: '#FF0000'
           }
         }}
       >
@@ -68,7 +76,7 @@ const FooterPlayer: React.FC = () => {
                 <SoundOutlined className={styles.soundIcon} />
               </Col>
               <Col span={8}>
-                <Slider value={100} max={100} min={0} />
+                <Slider onChange={handleChangeVolume} value={volume} max={100} min={0} />
               </Col>
               <Col span={4}></Col>
             </Row>

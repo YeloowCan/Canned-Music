@@ -4,11 +4,13 @@ import { ISongDetail } from '../../apis/types/song'
 export interface PlayingAudioState {
   isPlaying: boolean
   playingSong: ISongDetail | null
+  volume: number
 }
 
 const initialPlayingAudioState: PlayingAudioState = {
   isPlaying: false,
-  playingSong: null
+  playingSong: null,
+  volume: 100
 }
 
 export const playingAudioSlice = createSlice({
@@ -23,10 +25,14 @@ export const playingAudioSlice = createSlice({
     changePlayingState: (state) => ({
       ...state,
       isPlaying: !state.isPlaying
+    }),
+    changeVolume: (state, { payload }) => ({
+      ...state,
+      volume: payload
     })
   }
 })
 
-export const { setPlayingSong, changePlayingState } = playingAudioSlice.actions
+export const { setPlayingSong, changePlayingState, changeVolume } = playingAudioSlice.actions
 
 export default playingAudioSlice.reducer
