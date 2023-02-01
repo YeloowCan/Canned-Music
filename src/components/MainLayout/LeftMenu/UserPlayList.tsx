@@ -5,6 +5,7 @@ import { UnorderedListOutlined } from '@ant-design/icons'
 import { IPlaylist } from '../../../apis/types/account'
 import { Skeleton } from 'antd'
 import styles from './style.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 interface IUserPlayListProp {
   uid: number
@@ -32,11 +33,20 @@ const UserPlayList: React.FC<IUserPlayListProp> = ({ uid }) => {
 }
 
 const DetailList: React.FC<IDetailListProps> = ({ title, data }) => {
+  const navigate = useNavigate()
+  const jumpDetail = (id: number) => {
+    navigate(`/playlist/${id}`)
+  }
   return (
     <>
       <div className={styles[`${prefixCls}-mainTitle`]}>{title}</div>
       {data?.map((item) => (
-        <div title={item.name} key={item.id} className={styles[`${prefixCls}-listTitle`]}>
+        <div
+          onClick={() => jumpDetail(item.id)}
+          title={item.name}
+          key={item.id}
+          className={styles[`${prefixCls}-listTitle`]}
+        >
           <UnorderedListOutlined className={styles[`${prefixCls}-listIcon`]} />
           {item.name}
         </div>
