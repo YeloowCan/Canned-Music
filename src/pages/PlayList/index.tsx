@@ -44,7 +44,7 @@ const PlayList: React.FC = () => {
   const { name, coverImgUrl, list } = data || {}
 
   return (
-    <Skeleton loading={loading}>
+    <Skeleton loading={loading} active={true}>
       <Row gutter={12} className={styles.detailRow}>
         <Col span={3}>
           <img src={coverImgUrl} className={styles.coverImg} decoding='async' loading='lazy' />
