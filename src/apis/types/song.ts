@@ -15,7 +15,8 @@ export interface IRecommendSongList {
   playCount: number
 }
 
-interface IArtists {
+export interface IArtists {
+  id: number
   name: string
 }
 

@@ -9,4 +9,19 @@ const playCountFormat = (playCount: number) => {
   return playCount
 }
 
-export { playCountFormat }
+/**
+ * @description 时长格式化
+ * @param duration
+ */
+const durationFormat = (duration: number) => {
+  const digit = (num: number) => {
+    if (num > 9) {
+      return num
+    }
+    return `0${num}`
+  }
+  const second = duration / 1000
+  return `${digit(Math.floor(second / 60))}:${digit(Math.floor(second % 60))}`
+}
+
+export { playCountFormat, durationFormat }

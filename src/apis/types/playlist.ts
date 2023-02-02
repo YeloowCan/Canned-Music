@@ -1,4 +1,19 @@
+import { IArtists } from './song'
+
+export interface IAlbum {
+  id: number
+  name: string
+  picUrl: string
+}
+
 export interface IPlaylist {
+  id: number
+  name: string
+  al: IAlbum
+  ar: IArtists[]
+}
+
+export interface IPlayListDetail {
   adType: number
   backgroundCoverId: number
   cloudTrackCount: number
@@ -34,4 +49,5 @@ export interface IPlaylist {
   trackUpdateTime: number
   updateTime: number
   userId: number
+  list?: IPlaylist[]
 }

@@ -1,8 +1,8 @@
 import React from 'react'
-import { userPlaylist } from '../../../apis/account'
+import { userPlaylist } from '../../../apis/playlist'
 import { useRequest } from 'ahooks'
 import { UnorderedListOutlined } from '@ant-design/icons'
-import { IPlaylist } from '../../../apis/types/account'
+import { IPlayListDetail } from '../../../apis/types/playlist'
 import { Skeleton } from 'antd'
 import styles from './style.module.scss'
 import { useNavigate } from 'react-router-dom'
@@ -13,7 +13,7 @@ interface IUserPlayListProp {
 
 interface IDetailListProps {
   title: string
-  data: IPlaylist[] | undefined
+  data: IPlayListDetail[] | undefined
 }
 
 const prefixCls = 'userPlayList'

@@ -2,6 +2,8 @@ import React, { Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import routers from './router'
 import { MainLayout, RouterAuth } from './components'
+import { ConfigProvider } from 'antd'
+import { MainRed } from './constants/styles'
 import './styles/global.scss'
 
 const App: React.FC = () => {
@@ -9,7 +11,15 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Suspense fallback={null}>
         <MainLayout>
-          <RouterAuth routers={routers} />
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: MainRed
+              }
+            }}
+          >
+            <RouterAuth routers={routers} />
+          </ConfigProvider>
         </MainLayout>
       </Suspense>
     </BrowserRouter>
