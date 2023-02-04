@@ -22,7 +22,7 @@ const Banner: React.FC = () => {
   }
 
   return (
-    <Skeleton loading={loading}>
+    <Skeleton loading={loading} active={true}>
       <Slider {...setting}>
         {data?.map(({ imageUrl }) => (
           <img className={styles.image} key={imageUrl} src={imageUrl} onClick={() => handleClick()} />

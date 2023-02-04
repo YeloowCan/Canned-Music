@@ -25,7 +25,7 @@ const UserPlayList: React.FC<IUserPlayListProp> = ({ uid }) => {
   })
 
   return (
-    <Skeleton loading={loading} className={styles[prefixCls]}>
+    <Skeleton loading={loading} active={true} className={styles[prefixCls]}>
       <DetailList title='创建的歌单' data={data?.create} />
       <DetailList title='收藏的歌单' data={data?.collect} />
     </Skeleton>

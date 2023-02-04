@@ -1,38 +1,10 @@
 import React from 'react'
 import { useRequest } from 'ahooks'
-import { Col, Row, Skeleton, Table, Tabs, Tag } from 'antd'
+import { Col, Row, Skeleton, Tabs, Tag } from 'antd'
 import { useParams } from 'react-router-dom'
 import { getPlayListDetail } from '../../apis/playlist'
-import { IAlbum } from '../../apis/types/playlist'
-import { IArtists } from '../../apis/types/song'
+import { ListTable } from '../../components'
 import styles from './style.module.scss'
-import { durationFormat } from '../../utils/format'
-
-const columns = [
-  {
-    title: '音乐标题',
-    dataIndex: 'name',
-    width: '35%'
-  },
-  {
-    title: '歌手',
-    dataIndex: 'ar',
-    width: '25%',
-    render: (text: IArtists[]) => text.map((item) => item.name).join(' / ')
-  },
-  {
-    title: '专题',
-    dataIndex: 'al',
-    width: '25%',
-    render: (text: IAlbum) => text.name
-  },
-  {
-    title: '时长',
-    dataIndex: 'dt',
-    width: '15%',
-    render: (text: number) => durationFormat(text)
-  }
-]
 
 const PlayList: React.FC = () => {
   const { id = '' } = useParams()
@@ -62,12 +34,7 @@ const PlayList: React.FC = () => {
           {
             key: 'list',
             label: '歌曲列表',
-            children: <Table pagination={false} columns={columns} dataSource={list} rowKey='id' />
-          },
-          {
-            key: 'comment',
-            label: '评论',
-            children: `Content of Tab Pane 2`
+            children: <ListTable list={list} />
           }
         ]}
       />

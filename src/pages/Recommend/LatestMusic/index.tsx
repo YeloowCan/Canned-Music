@@ -18,7 +18,7 @@ const LatestMusic: React.FC = () => {
 
   return (
     <div className={styles.content}>
-      <Skeleton loading={loading}>
+      <Skeleton loading={loading} active={true}>
         <div className={styles.title}>
           最新音乐 <RightOutlined className={styles.icon} />
         </div>
