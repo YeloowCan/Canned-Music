@@ -9,3 +9,13 @@
   letter-spacing: 2px;
   color: rgb(200, 100, 50);
 }
+
+.user {
+  float: right;
+  display: flex;
+  align-items: center;
+}
+
+.nickName {
+  margin-left: 12px;
+}

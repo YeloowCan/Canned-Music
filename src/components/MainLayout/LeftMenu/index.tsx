@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Layout } from 'antd'
+import { Layout } from 'antd'
 import { useAppSelector } from '../../../hooks'
 import UserPlayList from './UserPlayList'
 import { LeftMenuList } from '../../../constants/menu'
@@ -12,8 +12,7 @@ const { Sider } = Layout
 const LeftMenu: React.FC = () => {
   const navigate = useNavigate()
   const { userInfo } = useAppSelector((store) => store.login)
-  const { profile, userId } = userInfo
-  const { avatarUrl, nickname } = profile
+  const { userId } = userInfo
 
   const [selectedMenu, setSelectedMenu] = useState('recommend')
 
@@ -36,10 +35,6 @@ const LeftMenu: React.FC = () => {
 
   return (
     <Sider className={styles.sider}>
-      <div>
-        <Avatar src={avatarUrl} size='large' />
-        <span className={styles.nickName}>{nickname}</span>
-      </div>
       {renderMenu()}
       <UserPlayList uid={userId} selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} />
     </Sider>

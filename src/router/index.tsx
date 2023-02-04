@@ -5,6 +5,7 @@ import { IRouters } from './type'
 const Login = lazy(() => import('../pages/Login'))
 const Recommend = lazy(() => import('../pages/Recommend'))
 const PlayList = lazy(() => import('../pages/PlayList'))
+const MV = lazy(() => import('../pages/MV'))
 
 const routers: IRouters[] = [
   {
@@ -18,6 +19,11 @@ const routers: IRouters[] = [
   {
     path: '/recommend',
     element: <Recommend />,
+    auth: true
+  },
+  {
+    path: '/mv',
+    element: <MV />,
     auth: true
   },
   {
