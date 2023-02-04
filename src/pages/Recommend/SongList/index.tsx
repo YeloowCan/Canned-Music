@@ -16,7 +16,7 @@ const SongList: React.FC = () => {
 
   return (
     <div className={styles.content}>
-      <Skeleton loading={loading} active={true}>
+      <Skeleton loading={loading} active>
         <div className={styles.title}>
           推荐歌单 <RightOutlined className={styles.icon} />
         </div>
