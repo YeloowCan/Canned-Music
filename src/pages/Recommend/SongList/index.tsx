@@ -4,8 +4,9 @@ import { getRecommendSongList } from '../../../apis/song'
 import { Col, Row, Skeleton } from 'antd'
 import { IRecommendSongList } from '../../../apis/types/song'
 import { CaretRightOutlined, RightOutlined } from '@ant-design/icons'
-import styles from './style.module.scss'
 import { playCountFormat } from '../../../utils/format'
+import { useNavigate } from 'react-router-dom'
+import styles from './style.module.scss'
 
 interface IListRowProps {
   data: IRecommendSongList[] | undefined
@@ -28,11 +29,17 @@ const SongList: React.FC = () => {
 }
 
 const ListRow: React.FC<IListRowProps> = ({ data }) => {
+  const navigate = useNavigate()
+
+  const handleClick = (id: number) => {
+    navigate(`/playlist/${id}`)
+  }
+
   return (
     <Row gutter={12}>
       {data?.map(({ id, picUrl, name, playCount }) => (
         <Col key={id} span={6}>
-          <img className={styles.pic} key={id} src={picUrl} />
+          <img className={styles.pic} key={id} src={picUrl} onClick={() => handleClick(id)} />
           <div className={styles.name}>{name}</div>
           <span className={styles.playCount}>
             <CaretRightOutlined />
