@@ -1,32 +1,20 @@
 import React, { useMemo } from 'react'
 import { Col, ConfigProvider, Layout, Row, Slider } from 'antd'
-import styles from './style.module.scss'
-import { SoundOutlined, StepBackwardOutlined, StepForwardOutlined } from '@ant-design/icons'
-import PlayIcon from '../../PlayIcon'
+import { SoundOutlined } from '@ant-design/icons'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { changePlayingState, changeVolume } from '../../../redux/slices/playingAudioSlice'
+import { changeVolume } from '../../../redux/slices/playingAudioSlice'
+import PlayControl from './PlayControl'
+import styles from './style.module.scss'
 
 const { Footer } = Layout
 
 const FooterPlayer: React.FC = () => {
   const dispatch = useAppDispatch()
-  const { isPlaying, playingSong, volume } = useAppSelector((store) => store.playingAudio)
-  const { id, picUrl, name, song } = playingSong || {}
+  const { playingSong, volume } = useAppSelector((store) => store.playingAudio)
+  const { picUrl, name, song } = playingSong || {}
   const { artists } = song || {}
 
   const musicAudio = document.getElementById('musicAudio') as HTMLAudioElement
-
-  const handlePlay = () => {
-    if (!playingSong) {
-      return
-    }
-    if (musicAudio.paused) {
-      musicAudio.play()
-    } else {
-      musicAudio.pause()
-    }
-    dispatch(changePlayingState())
-  }
 
   const handleChangeVolume = (value: number) => {
     if (musicAudio?.played) {
@@ -49,7 +37,7 @@ const FooterPlayer: React.FC = () => {
         }}
       >
         <Row>
-          <Col span={8}>
+          <Col span={8} className={styles.left}>
             <Row align='middle'>
               <Col xxl={2} xl={3} span={4} xs={6}>
                 <img src={picUrl} className={styles.songPic} />
@@ -65,10 +53,7 @@ const FooterPlayer: React.FC = () => {
             </Row>
           </Col>
           <Col span={8} className={styles.center}>
-            <StepBackwardOutlined className={styles.switchIcon} />
-            <PlayIcon playing={isPlaying} style={{ fontSize: 32 }} onClick={handlePlay} />
-            <StepForwardOutlined className={styles.switchIcon} />
-            <audio id='musicAudio' src={`https://music.163.com/song/media/outer/url?id=${id}.mp3`} autoPlay />
+            <PlayControl />
           </Col>
           <Col span={8} className={styles.rightControl}>
             <Row gutter={12} align='middle'>

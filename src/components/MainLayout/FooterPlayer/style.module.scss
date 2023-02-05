@@ -1,7 +1,11 @@
 .footer {
-  padding: 18px 50px;
+  padding: 0px;
   background: #fff;
   border-top: 1px solid #ccc;
+}
+
+.left {
+  padding-top: 18px;
 }
 
 .center {
@@ -35,10 +39,14 @@
 
 .rightControl {
   text-align: right;
-  padding-top: 8px;
+  padding-top: 24px;
 }
 
 .soundIcon {
   font-size: 20px;
   color: rgb(236, 65, 65);
+}
+
+.time {
+  padding-top: 2px;
 }

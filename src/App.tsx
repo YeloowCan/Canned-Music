@@ -10,17 +10,17 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={null}>
-        <MainLayout>
-          <ConfigProvider
-            theme={{
-              token: {
-                colorPrimary: MainRed
-              }
-            }}
-          >
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: MainRed
+            }
+          }}
+        >
+          <MainLayout>
             <RouterAuth routers={routers} />
-          </ConfigProvider>
-        </MainLayout>
+          </MainLayout>
+        </ConfigProvider>
       </Suspense>
     </BrowserRouter>
   )

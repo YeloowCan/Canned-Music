@@ -31,4 +31,5 @@ export interface ISongDetail {
   picUrl: string
   id: number
   song: ISong
+  dt: number
 }
