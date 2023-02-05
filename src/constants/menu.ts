@@ -8,3 +8,5 @@ export const LeftMenuList = [
     path: 'mv'
   }
 ]
+
+export const MVAreaList = ['内地', '港台', '欧美', '日本', '韩国']
