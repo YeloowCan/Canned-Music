@@ -34,3 +34,9 @@ export interface ILoginResult {
     playlistBeSubscribedCount: number
   }
 }
+
+export interface IQRCodeState {
+  code: number
+  message: string
+  cookie: string
+}

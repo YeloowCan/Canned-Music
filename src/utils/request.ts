@@ -3,6 +3,8 @@ import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
 export const baseUrl = 'https://cannedapi.yellowcan.top/'
 
+const successCode = [200, 800, 801, 802, 803]
+
 axios.defaults.baseURL = baseUrl
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
@@ -41,7 +43,7 @@ const request = ({ url, data, method = 'get', ...rest }: AxiosRequestConfig) => 
       }
     })
     .then(function (response) {
-      if (response?.code !== 200) {
+      if (!successCode.includes(response?.code)) {
         message.error(response.message)
         return
       }

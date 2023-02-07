@@ -6,6 +6,32 @@
   background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
 }
 
+.card {
+  width: 50rem;
+}
+
+.form {
+  width: 23rem;
+}
+
 .submitBtn {
   width: 100%;
+}
+
+.scanContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-right: 5rem;
+}
+
+.scanTitle {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.scanImg {
+  width: 180px;
+  height: 180px;
 }
