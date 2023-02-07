@@ -34,9 +34,9 @@ const ScanCode: React.FC = () => {
   return (
     <div className={styles.scanContainer}>
       <div className={styles.scanTitle}>网易云音乐APP扫码登录</div>
-      <Spin spinning={loading}>
-        <img src={url} className={styles.scanImg} />
-      </Spin>
+      <div className={styles.scanImg}>
+        <Spin spinning={loading}>{loading ? null : <img src={url} />}</Spin>
+      </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import request, { axiosInstance } from '../utils/request'
+import request from '../utils/request'
 import { ILoginRequest, IQRCodeState } from './types/login'
 
 const login = ({ phone, password, captcha }: ILoginRequest) => {

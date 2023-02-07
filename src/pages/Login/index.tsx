@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getAuthCode, login } from '../../apis/login'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import { Button, Card, Col, Divider, Form, Input, message, Row, Tabs } from 'antd'
+import { Button, Card, Col, Form, Input, message, Row, Tabs } from 'antd'
 import { ILoginRequest } from '../../apis/types/login'
 import { useNavigate } from 'react-router-dom'
 import { SESSION_LOCAL_KEY } from '../../constants/keys'
