@@ -6,12 +6,12 @@ import { durationFormat } from '../../../utils/format'
 import styles from './style.module.scss'
 import { useAppSelector } from '../../../hooks'
 import { useDispatch } from 'react-redux'
-import { changePlayingState } from '../../../redux/slices/playingAudioSlice'
+import { changePlayingState, setPlayingSong } from '../../../redux/slices/playingAudioSlice'
 import { MainRed } from '../../../constants/styles'
 
 const PlayControl: React.FC = () => {
   const dispatch = useDispatch()
-  const { isPlaying, playingSong } = useAppSelector((store) => store.playingAudio)
+  const { isPlaying, playingSong, playlist = [] } = useAppSelector((store) => store.playingAudio)
   const { id, dt = 0 } = playingSong || {}
   const musicAudio = document.getElementById('musicAudio') as HTMLAudioElement
 
@@ -23,7 +23,6 @@ const PlayControl: React.FC = () => {
 
   useEffect(() => {
     let id = 0
-    console.log(currentTime)
 
     if (currentTime >= 0) {
       id = setTimeout(() => {
@@ -48,11 +47,31 @@ const PlayControl: React.FC = () => {
     dispatch(changePlayingState())
   }
 
+  const playSwitch = (type: 'prev' | 'next') => {
+    let playingIndex = 0
+    for (let i = 0; i < playlist.length; i++) {
+      if (playlist[i].id === id) {
+        playingIndex = i
+        break
+      }
+    }
+    const prevSong = playlist[playingIndex + (type === 'prev' ? -1 : 1)]
+    dispatch(
+      setPlayingSong({
+        ...prevSong,
+        picUrl: prevSong.al.picUrl,
+        song: {
+          artists: prevSong.ar
+        }
+      })
+    )
+  }
+
   return (
     <>
-      <StepBackwardOutlined className={styles.switchIcon} />
+      <StepBackwardOutlined className={styles.switchIcon} onClick={() => playSwitch('prev')} />
       <PlayIcon playing={isPlaying} style={{ fontSize: 32 }} onClick={handlePlay} />
-      <StepForwardOutlined className={styles.switchIcon} />
+      <StepForwardOutlined className={styles.switchIcon} onClick={() => playSwitch('next')} />
       <audio id='musicAudio' src={`https://music.163.com/song/media/outer/url?id=${id}.mp3`} autoPlay />
       <Row gutter={12}>
         <Col span={2} className={styles.time}>

@@ -4,7 +4,7 @@ import { IArtists } from '../../apis/types/song'
 import { IAlbum, IPlaylist } from '../../apis/types/playlist'
 import { durationFormat } from '../../utils/format'
 import { useDispatch } from 'react-redux'
-import { setPlayingSong } from '../../redux/slices/playingAudioSlice'
+import { setPlayingSong, setPlayList } from '../../redux/slices/playingAudioSlice'
 
 const columns = [
   {
@@ -48,6 +48,7 @@ const ListTable: React.FC<IListTableProps> = ({ list }) => {
         }
       })
     )
+    dispatch(setPlayList(list))
   }
 
   return (

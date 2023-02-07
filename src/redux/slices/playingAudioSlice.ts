@@ -1,16 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { IPlaylist } from '../../apis/types/playlist'
 import { ISongDetail } from '../../apis/types/song'
 
 export interface PlayingAudioState {
   isPlaying: boolean
   playingSong: ISongDetail | null
   volume: number
+  playlist: IPlaylist[]
 }
 
 const initialPlayingAudioState: PlayingAudioState = {
   isPlaying: false,
   playingSong: null,
-  volume: 100
+  volume: 100,
+  playlist: []
 }
 
 export const playingAudioSlice = createSlice({
@@ -21,6 +24,10 @@ export const playingAudioSlice = createSlice({
       ...state,
       isPlaying: true,
       playingSong: payload
+    }),
+    setPlayList: (state, { payload }) => ({
+      ...state,
+      playlist: payload
     }),
     changePlayingState: (state) => ({
       ...state,
@@ -33,6 +40,6 @@ export const playingAudioSlice = createSlice({
   }
 })
 
-export const { setPlayingSong, changePlayingState, changeVolume } = playingAudioSlice.actions
+export const { setPlayingSong, changePlayingState, changeVolume, setPlayList } = playingAudioSlice.actions
 
 export default playingAudioSlice.reducer
