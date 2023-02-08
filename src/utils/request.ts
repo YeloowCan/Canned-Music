@@ -3,13 +3,18 @@ import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
 export const baseUrl = 'https://cannedapi.yellowcan.top/'
 
+export interface IRequestError {
+  code: number
+  message: string
+}
+
 const successCode = [200, 800, 801, 802, 803]
 
 axios.defaults.baseURL = baseUrl
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
-const handleError = (error: any) => {
-  message.error(error.data.message)
+const handleError = (error: IRequestError) => {
+  message.error(error.message)
 }
 
 // axios的实例及拦截器配置
@@ -26,10 +31,13 @@ axiosInstance.interceptors.response.use(
 
 export { axiosInstance }
 
-const request = ({ url, data, method = 'get', ...rest }: AxiosRequestConfig) => {
+const request = ({ url, data, method = 'post', ...rest }: AxiosRequestConfig) => {
   return axios({
     url,
-    data,
+    data: {
+      ...data,
+      cookie: localStorage.getItem('cookie')
+    },
     method,
     ...rest
   })

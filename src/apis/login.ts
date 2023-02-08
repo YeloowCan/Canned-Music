@@ -14,6 +14,16 @@ const getAuthCode = (phone: string) => {
 }
 
 /**
+ * @description 获取账号信息
+ * @returns
+ */
+const getAccountInfo = () => {
+  return request({
+    url: `/user/account`
+  })
+}
+
+/**
  * @description 二维码key生成接口
  */
 const getQrKey = async () => {
@@ -49,4 +59,4 @@ const checkQrCode = async (key: string): Promise<IQRCodeState> => {
   return response
 }
 
-export { login, getAuthCode, getQrKey, createQrCode, checkQrCode }
+export { login, getAuthCode, getAccountInfo, getQrKey, createQrCode, checkQrCode }

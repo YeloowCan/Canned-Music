@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { getAuthCode, login } from '../../apis/login'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import { Button, Card, Col, Form, Input, message, Row, Tabs } from 'antd'
-import { ILoginRequest } from '../../apis/types/login'
+import { Card, Col, message, Row } from 'antd'
+import { ILoginResult } from '../../apis/types/login'
 import { useNavigate } from 'react-router-dom'
 import { SESSION_LOCAL_KEY } from '../../constants/keys'
-import styles from './style.module.scss'
 import { loginIn } from '../../redux/slices/loginSlice'
 import { useDispatch } from 'react-redux'
 import ScanCode from './ScanCode'
+import styles from './style.module.scss'
+import LoginForm from './LoginForm'
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const [form] = Form.useForm()
   const [isSentCode, setIsSentCode] = useState<number>(0)
 
   useEffect(() => {
@@ -28,27 +26,17 @@ const Login: React.FC = () => {
     }
   }, [isSentCode])
 
-  const getPhoneAuthCode = () => {
-    const phone = form.getFieldValue('phone')
-    getAuthCode(phone).then(() => {
-      setIsSentCode(60)
-    })
-  }
-
-  const handleSubmint = (value: ILoginRequest) => {
-    const { phone, password, captcha } = value
-    login({ phone, password, captcha }).then((res) => {
-      if (res) {
-        const userInfo = {
-          userId: res.profile.userId,
-          ...res
-        }
-        message.success('登录成功')
-        localStorage.setItem(SESSION_LOCAL_KEY, JSON.stringify(userInfo))
-        dispatch(loginIn(userInfo))
-        navigatePage()
+  const handleLoginSuccess = (res: ILoginResult) => {
+    if (res) {
+      const userInfo = {
+        ...res,
+        userId: res.profile.userId
       }
-    })
+      message.success('登录成功')
+      localStorage.setItem(SESSION_LOCAL_KEY, JSON.stringify(userInfo))
+      dispatch(loginIn(userInfo))
+      navigatePage()
+    }
   }
 
   const navigatePage = () => {
@@ -60,77 +48,10 @@ const Login: React.FC = () => {
       <Card className={styles.card}>
         <Row align='middle'>
           <Col span={12}>
-            <ScanCode />
+            <ScanCode handleLoginSuccess={handleLoginSuccess} />
           </Col>
           <Col span={12}>
-            <Form form={form} onFinish={handleSubmint} className={styles.form}>
-              <Tabs
-                defaultActiveKey='1'
-                items={[
-                  {
-                    label: '验证码登录',
-                    key: '1',
-                    children: (
-                      <>
-                        <Form.Item name='phone' rules={[{ required: true }]}>
-                          <Input size='large' placeholder='手机号' prefix={<UserOutlined />} />
-                        </Form.Item>
-                        <Form.Item rules={[{ required: true }]}>
-                          {/* <Row gutter={12}> */}
-                          <Input.Group compact>
-                            <Form.Item name='captcha'>
-                              <Input
-                                size='large'
-                                name='captcha'
-                                style={{ width: 250 }}
-                                placeholder='短信验证码'
-                                prefix={<LockOutlined />}
-                              />
-                            </Form.Item>
-                            <Button size='large' disabled={isSentCode > 0} type='primary' onClick={getPhoneAuthCode}>
-                              {isSentCode ? `${isSentCode}秒后重新获取` : '获取验证码'}
-                            </Button>
-                          </Input.Group>
-                        </Form.Item>
-                        <Form.Item>
-                          <Button size='large' type='primary' htmlType='submit' className={styles.submitBtn}>
-                            登录
-                          </Button>
-                        </Form.Item>
-                      </>
-                    )
-                  },
-                  {
-                    label: '密码登录',
-                    key: '2',
-                    children: (
-                      <>
-                        <Form.Item name='phone' rules={[{ required: true }]}>
-                          <Input size='large' placeholder='手机号' prefix={<UserOutlined />} />
-                        </Form.Item>
-                        <Form.Item rules={[{ required: true }]}>
-                          {/* <Row gutter={12}> */}
-                          <Form.Item name='password'>
-                            <Input.Password
-                              size='large'
-                              name='password'
-                              style={{ width: 360 }}
-                              placeholder='密码'
-                              prefix={<LockOutlined />}
-                            />
-                          </Form.Item>
-                        </Form.Item>
-                        <Form.Item>
-                          <Button size='large' type='primary' htmlType='submit' className={styles.submitBtn}>
-                            登录
-                          </Button>
-                        </Form.Item>
-                      </>
-                    )
-                  }
-                ]}
-              ></Tabs>
-            </Form>
+            <LoginForm handleLoginSuccess={handleLoginSuccess} />
           </Col>
         </Row>
       </Card>
