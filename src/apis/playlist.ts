@@ -26,15 +26,11 @@ const userPlaylist = async (uid: number): Promise<{ create: IPlayListDetail[]; c
  * @returns
  */
 const getPlayListDetail = async (id: string): Promise<IPlayListDetail> => {
-  const detail = await request({
+  const response = await request({
     url: `/playlist/detail?id=${id}`
   })
 
-  const list = await request({
-    url: `/playlist/track/all?id=${id}`
-  })
-
-  return { ...detail.playlist, list: list.songs }
+  return { ...response.playlist, list: response.playlist.tracks }
 }
 
 export { userPlaylist, getPlayListDetail }
