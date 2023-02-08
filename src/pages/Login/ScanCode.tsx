@@ -15,7 +15,7 @@ const ScanCode: React.FC<IScanCodeProp> = ({ handleLoginSuccess }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const { code, cookie } = state
+    const { code, cookie } = state || {}
     switch (code) {
       // 二维码过期
       case 800:

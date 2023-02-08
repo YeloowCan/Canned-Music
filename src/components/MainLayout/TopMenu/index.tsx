@@ -9,7 +9,7 @@ const { Header } = Layout
 const TopMenu: React.FC = () => {
   const { userInfo } = useAppSelector((store) => store.login)
   const { profile } = userInfo
-  const { avatarUrl, nickname } = profile
+  const { avatarUrl, nickname } = profile || {}
 
   return (
     <Header>

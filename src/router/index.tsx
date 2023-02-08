@@ -10,7 +10,7 @@ const MV = lazy(() => import('../pages/MV'))
 const routers: IRouters[] = [
   {
     path: '*',
-    element: <Navigate to='login' />
+    element: <Navigate to='recommend' />
   },
   {
     path: '/login',

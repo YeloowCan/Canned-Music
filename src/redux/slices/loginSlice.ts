@@ -10,7 +10,7 @@ export interface LoginState {
 const session = JSON.parse(localStorage.getItem(SESSION_LOCAL_KEY) || '{}')
 
 const initialLoginState: LoginState = {
-  isLogined: !!session.loginType,
+  isLogined: !!session.userId,
   userInfo: session
 }
 

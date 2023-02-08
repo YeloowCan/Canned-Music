@@ -5,6 +5,7 @@ import TopMenu from './TopMenu'
 import LeftMenu from './LeftMenu'
 import FooterPlayer from './FooterPlayer'
 import styles from './style.module.scss'
+import { useAppSelector } from '../../hooks'
 
 const { Content } = Layout
 
@@ -16,6 +17,7 @@ interface IMainLayoutProps {
 
 const MainLayout: React.FC<IMainLayoutProps> = ({ children }) => {
   const location = useLocation()
+  const { isLogined } = useAppSelector((store) => store.login)
 
   const { pathname } = location
 
@@ -25,7 +27,7 @@ const MainLayout: React.FC<IMainLayoutProps> = ({ children }) => {
     <Layout className={styles.layout}>
       <TopMenu />
       <Layout>
-        <LeftMenu />
+        {isLogined && <LeftMenu />}
         <Content className={styles.content}>{children}</Content>
       </Layout>
       <FooterPlayer />
