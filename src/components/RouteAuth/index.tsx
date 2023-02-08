@@ -30,7 +30,6 @@ const RouterAuth: React.FC<IRouterAuthProps> = ({ routers }) => {
     const { pathname } = location
     const findRoute = findRouter(routers, pathname)
     if (findRoute?.auth && !isLogined) {
-      message.error('请登录')
       naviagte('/login')
     }
   }
