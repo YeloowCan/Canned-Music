@@ -46,9 +46,11 @@ const ScanCode: React.FC<IScanCodeProp> = ({ handleLoginSuccess }) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      checkQrCode(key).then((state) => {
-        setState(state)
-      })
+      if (key) {
+        checkQrCode(key).then((state) => {
+          setState(state)
+        })
+      }
     }, 2000)
     return () => clearInterval(timer)
   }, [key])
